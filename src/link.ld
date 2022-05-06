@@ -8,9 +8,6 @@ MEMORY
 
 SECTIONS
 {
-
-. = 0x10000000;
-
 .init :
 {
   KEEP (*(SORT_NONE(.init)))
@@ -26,11 +23,18 @@ SECTIONS
   *(.interrupt_handler)
 } > RAM_MEM
 
-.rodata ALIGN(8) :
+.data ALIGN(8) :
 {
-  *(.rodata)
-} > RAM_MEM
-
+    *(.rodata)
+    *(.data)
+    . = ALIGN(8);
+    PROVIDE(__global_pointer$ = . + 0x800);
+    . = ALIGN(8);
+    *(.sdata)
+    *(.srodata)
+} >RAM_MEM
+PROVIDE(_edata = .);
+PROVIDE(edata = .);
 
 .preinit_array ALIGN(8) :
 {
@@ -47,35 +51,20 @@ SECTIONS
   PROVIDE_HIDDEN (__init_array_end = .);
 } > RAM_MEM
 
-
-.data ALIGN(8) :
-  {
-    *(.data)
-  } > RAM_MEM
-  .sdata ALIGN(8) :
-  {
-    PROVIDE( __global_pointer$ = . + 0x800 );
-    *(.sdata)
-  } > RAM_MEM
-  PROVIDE(_edata = .);
-
-
 PROVIDE( __bss_start = . );
 .bss ALIGN(8) :
 {
   *(.sbss)
   *(.bss)
+  *(COMMON)
 } > RAM_MEM
 PROVIDE( __bss_end = . );
 
-
   PROVIDE(exit = .);
-  _exit = exit;
+  PROVIDE(_exit = exit);
 
+  PROVIDE(_end = .);
+  PROVIDE(end = .);
 
-  PROVIDE( _end = . );
-  PROVIDE( end = . );
-
- PROVIDE( _sp = 0x100f0000);  /*stack*/
-
+  PROVIDE(_sp = 0x10080000);  /*stack*/
 }
