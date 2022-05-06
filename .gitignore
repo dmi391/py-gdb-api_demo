@@ -1,0 +1,8 @@
+
+py-gdb-api_demo.txt
+\.project
+\.cproject
+Debug/
+\.settings/
+\.vscode
+**/__pycache__/
