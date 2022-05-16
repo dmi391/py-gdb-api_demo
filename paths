@@ -13,8 +13,8 @@ GDB="/home/user/eclipse_4.4.1/TOOLS/gdb_overlay/riscv64-unknown-elf-gdb-10.1.0-2
 #   "/gdb.py" => Launch execution
 #   "/gdb_ovmgr_replace.py" => Launch unit tests
 
-GDB_SCRIPT="./gdb_launch.py"
-#GDB_SCRIPT="./gdb_unit_tests.py"
+GDB_SCRIPT="../gdb-py/gdb_launch.py"
+#GDB_SCRIPT="../gdb-py/gdb_unit_tests.py"
 
 #--------------------------------
 #For build:
