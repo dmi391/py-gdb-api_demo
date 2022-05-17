@@ -5,12 +5,17 @@
 OPENOCD="/home/user/eclipse_4.4.1/TOOLS/riscv-openocd-0.10.0-2020.12.1-x86_64-linux-ubuntu14/bin/openocd"
 OPENOCD_CFG_HW="./riscpoa.cfg"
 
-#GDB="/home/user/eclipse_4.4.1/TOOLS/riscv64-unknown-elf-toolchain-10.2.0-2020.12.8-x86_64-linux-ubuntu14/bin/riscv64-unknown-elf-gdb-py"
 GDB="/home/user/eclipse_4.4.1/TOOLS/gdb_overlay/riscv64-unknown-elf-gdb-10.1.0-2020.12.8-x86_64-linux-ubuntu14/bin/riscv64-unknown-elf-gdb-py"
 
 #--------------------------------
+#For Spike:
+SPIKE="/home/user/eclipse_4.4.1/TOOLS/riscv_tui_12.12.18/bin/spike"
+LD_LIB_PATH="/home/user/eclipse_4.4.1/TOOLS/riscv_tui_12.12.18/lib/"
+OPENOCD_CFG_SPIKE="./spike.cfg"
+
+#--------------------------------
 #Launch configurations:
-#   "/gdb.py" => Launch execution
+#   "/gdb_launch.py" => Launch execution
 #   "/gdb_ovmgr_replace.py" => Launch unit tests
 
 GDB_SCRIPT="../gdb-py/gdb_launch.py"
