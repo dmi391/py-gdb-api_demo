@@ -16,7 +16,7 @@ OPENOCD_CFG_SPIKE="./spike.cfg"
 #--------------------------------
 #Launch configurations:
 #   "/gdb_launch.py" => Launch execution
-#   "/gdb_ovmgr_replace.py" => Launch unit tests
+#   "/gdb_unit_tests.py" => Launch unit tests
 
 GDB_SCRIPT="../gdb-py/gdb_launch.py"
 #GDB_SCRIPT="../gdb-py/gdb_unit_tests.py"
