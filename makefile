@@ -10,9 +10,10 @@ TARGET := $(notdir $(CURDIR))
 SRC_DIR := src
 BUILD_DIR := Debug
 
-SRC_CPP := $(wildcard $(SRC_DIR)/*.cpp)
-SRC_ASM := $(wildcard $(SRC_DIR)/*.asm)
-SRC_S := $(wildcard $(SRC_DIR)/*.S)
+
+SRC_CPP	:= $(foreach DIR, $(SRC_DIR), $(wildcard $(DIR)/*.cpp))
+SRC_ASM	:= $(foreach DIR, $(SRC_DIR), $(wildcard $(DIR)/*.asm))
+SRC_S	:= $(foreach DIR, $(SRC_DIR), $(wildcard $(DIR)/*.S))
 
 OBJECTS := $(addprefix $(BUILD_DIR)/, $(SRC_CPP:.cpp=.o)) \
             $(addprefix $(BUILD_DIR)/, $(SRC_ASM:.asm=.o)) \
@@ -25,6 +26,11 @@ CXXFLAGS = -march=rv64g -msmall-data-limit=8 -O0 -fmessage-length=0 \
             -fsigned-char -ffunction-sections -fdata-sections -g3 \
             -std=gnu++11 -fabi-version=0 \
             -fno-exceptions -fno-rtti -fno-use-cxa-atexit -fno-threadsafe-statics -fno-unwind-tables \
+            -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
+
+ASFLAGS = -march=rv64g -msmall-data-limit=8 -O0 -fmessage-length=0 \
+            -fsigned-char -ffunction-sections -fdata-sections  -g3 \
+            -x assembler-with-cpp \
             -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@)" -c -o "$@" "$<"
 
 LDFLAGS := -march=rv64g -msmall-data-limit=8 -O0 -fmessage-length=0 \
@@ -67,13 +73,13 @@ $(BUILD_DIR)/%.o: %.cpp
 $(BUILD_DIR)/%.o: %.S
 	@echo Building file: "$@"
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS)
+	$(CXX) $(ASFLAGS)
 	@echo ""
 
 $(BUILD_DIR)/%.o: %.asm
 	@echo Building file: "$@"
 	@mkdir -p $(dir $@)
-	$(CXX) $(CXXFLAGS)
+	$(CXX) $(ASFLAGS)
 	@echo ""
 
 #Include .d files for existing .o files

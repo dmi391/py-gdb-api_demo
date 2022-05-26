@@ -8,8 +8,9 @@ As the example used embedded RISC-V.
 
 Using Python GDB API allows to expand GDB opportunities.  
 Python GDB API allows to create Python script for GDB. Also it is possible to implement custom GDB-commands. It can be used to automate work with GDB. [GDB doc: 23.2 Extending gdb using Python]  
-
-These ideas can be used for launch automation, test automation and other. Details in the Wiki.
+Submodule /modules/ contains custom GDB-commands and custom GDB-functions.  
+These ideas can be used for launch automation, test automation and other.  
+Details in the Wiki.
 
 ## Quick start
 
