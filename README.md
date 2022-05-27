@@ -33,11 +33,12 @@ There are two launch configurations for demonstration (setting in file '/py-gdb-
 
 Launch with hardware:
 
-        /launch-sh/openocd_gdb_launch.sh /Debug/py-gdb-api_demo.elf
+        cd ./launch-sh/
+        ./openocd_gdb_launch.sh ../Debug/py-gdb-api_demo.elf
 
 Launch with Spike:
 
-        /launch-sh/spike_openocd_gdb_launch.sh /Debug/py-gdb-api_demo.elf
+        cd ./launch-sh/
+        ./launch-sh/spike_openocd_gdb_launch.sh ../Debug/py-gdb-api_demo.elf
 
 ----
-
