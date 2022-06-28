@@ -39,6 +39,6 @@ Launch with hardware:
 Launch with Spike:
 
         cd ./launch-sh/
-        ./launch-sh/spike_openocd_gdb_launch.sh ../Debug/py-gdb-api_demo.elf
+        ./spike_openocd_gdb_launch.sh ../Debug/py-gdb-api_demo.elf
 
 ----
